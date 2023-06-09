@@ -32,16 +32,36 @@ public class BorrarSeleccionServlet extends HttpServlet {
             }
         }
 
-        /*
+
         //si esta en la lista de partidos mme devuelve al registro de selecciones
         if (flag_partidos){
             response.sendRedirect(request.getContextPath() + "/RegistroSeleccionServlet");
         }else{
 
+            JugadoresDaos jugadoresDaos = new JugadoresDaos();
+            //ahora valido que si hay jugadores en esa sele
+            boolean flag_jugador = false;
+            for (Jugador jugador_analizado : jugadoresDaos.listarJugadores()){
+                if (jugador_analizado.getIdSeleccion() == id2){
+                    flag_jugador = true;
+                }
+            }
+
+
+            //ahora habran dos opciones dependiendo de que suceda con las flags
+            if (flag_jugador){
+                jugadoresDaos.borrar_jugador(id);
+                seleccionesDao.borrar_seleccion(id);
+                response.sendRedirect(request.getContextPath() + "/RegistroSeleccionServlet");
+            }else{
+                seleccionesDao.borrar_seleccion(id);
+                response.sendRedirect(request.getContextPath() + "/RegistroSeleccionServlet");
+            }
+
+
+
         }
 
-        seleccionesDao.borrar_seleccion(id2);
-        response.sendRedirect(request.getContextPath() + "/RegistroSeleccionServlet");  */
     }
 
     @Override
