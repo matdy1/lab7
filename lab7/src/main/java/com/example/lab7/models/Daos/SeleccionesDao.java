@@ -1,5 +1,6 @@
 package com.example.lab7.models.Daos;
 
+import com.example.lab7.models.beans.Estadio;
 import com.example.lab7.models.beans.Jugador;
 import com.example.lab7.models.beans.Seleccion;
 
@@ -12,7 +13,12 @@ public class SeleccionesDao extends DaosBase{
 
         ArrayList<Seleccion> listaSelecciones = new ArrayList<>();
 
-        String sql = "SELECT * FROM seleccion";
+        String sql = "select s.idSeleccion, s.nombre, s.tecnico, e.nombre as estadio, concat(sl.nombre, ' vs ', sv.nombre) as partido\n" +
+                "from seleccion s, partido p, estadio e, seleccion sl, seleccion sv\n" +
+                "where (p.seleccionLocal = s.idSeleccion or p.seleccionVisitante = s.idSeleccion) and p.fecha = (select min(fecha) from partido where seleccionLocal = s.idSeleccion or seleccionVisitante = s.idSeleccion)\n" +
+                "and e.idEstadio = s.estadio_idEstadio\n" +
+                "and sl.idSeleccion = p.seleccionLocal\n" +
+                "and sv.idSeleccion = p.seleccionVisitante;\n";
 
 
         try (Connection conn = getConnection();
@@ -24,7 +30,13 @@ public class SeleccionesDao extends DaosBase{
                 seleccion.setIdSeleccion(rs.getInt(1));
                 seleccion.setNombre(rs.getString(2));
                 seleccion.setTecnico(rs.getString(3));
-                seleccion.setIdEstadio(rs.getInt(4));
+
+                Estadio estadio = new Estadio();
+                estadio.setNombre(rs.getString(4));
+
+                seleccion.setEstadio(estadio);
+
+                seleccion.setPrimer_partido(rs.getString(5));
                 listaSelecciones.add(seleccion);
             }
         } catch (SQLException ex) {

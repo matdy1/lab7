@@ -6,6 +6,26 @@ public class Seleccion {
     private String nombre;
     private String tecnico;
     private int idEstadio;
+    private Estadio estadio;
+
+    private String primer_partido;
+
+
+    public String getPrimer_partido() {
+        return primer_partido;
+    }
+
+    public void setPrimer_partido(String primer_partido) {
+        this.primer_partido = primer_partido;
+    }
+
+    public Estadio getEstadio() {
+        return estadio;
+    }
+
+    public void setEstadio(Estadio estadio) {
+        this.estadio = estadio;
+    }
 
     public int getIdSeleccion() {
         return idSeleccion;
