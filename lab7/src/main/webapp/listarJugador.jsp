@@ -13,8 +13,11 @@
     <jsp:param name="page" value="jugadores"/>
   </jsp:include>
   <div class="pb-5 pt-4 px-3 titlecolor d-flex justify-content-between align-items-center">
-    <div class="col-lg-6">
+    <div class="col-lg-10">
       <h1 class='text-light'>Jugadores</h1>
+    </div>
+    <div class="col-lg-2">
+      <a class="btn btn-success" href="<%=request.getContextPath()%>/CrearJugadorServlet">Crear Jugadores Nuevos</a>
     </div>
   </div>
   <div class="tabla">
@@ -54,4 +57,3 @@
 <jsp:include page="/static/scripts.jsp"/>
 </body>
 </html>
-

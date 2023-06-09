@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "JugadorServlet", value = "/JugadorServlet")
 public class JugadorServlet extends HttpServlet {
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         response.setContentType("text/html");
@@ -20,7 +21,12 @@ public class JugadorServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("listarJugador.jsp");
         requestDispatcher.forward(request,response);
 
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+
 }

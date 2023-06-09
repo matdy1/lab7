@@ -7,7 +7,17 @@ public class Jugador {
     private int edad;
     private String posicion;
     private String club;
+    private int idSeleccion;
     private String nombre_seleccion;
+
+
+    public int getIdSeleccion() {
+        return idSeleccion;
+    }
+
+    public void setIdSeleccion(int idSeleccion) {
+        this.idSeleccion = idSeleccion;
+    }
 
     public int getIdjugador() {
         return idjugador;
