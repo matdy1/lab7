@@ -46,4 +46,21 @@ public class SeleccionesDao extends DaosBase{
         return listaSelecciones;
     }
 
+    public void guardar(Seleccion seleccion) {
+
+        String sql = "INSERT INTO seleccion (nombre,tecnico,estadio_idEstadio) VALUES (?,?,?,?,?)";
+        try (Connection connection = getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, seleccion.getNombre());
+            pstmt.setString(2, seleccion.getTecnico());
+            pstmt.setInt(3, seleccion.getIdEstadio());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

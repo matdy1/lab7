@@ -17,6 +17,9 @@
         <div class="col-lg-10">
             <h1 class='text-light'>Selecciones</h1>
         </div>
+        <div class="col-lg-2">
+            <a class="btn btn-success" href="<%=request.getContextPath()%>/CrearSeleccionServlet">Crear Seleccion Nueva</a>
+        </div>
     </div>
     <div class="tabla">
         <table class="table table-dark table-transparent table-hover">
