@@ -8,7 +8,7 @@ public class Jugador {
     private String posicion;
     private String club;
     private int idSeleccion;
-    private String nombre_seleccion;
+    private Seleccion seleccion;
 
 
     public int getIdSeleccion() {
@@ -59,11 +59,11 @@ public class Jugador {
         this.club = club;
     }
 
-    public String getNombre_seleccion() {
-        return nombre_seleccion;
+    public Seleccion getSeleccion() {
+        return seleccion;
     }
 
-    public void setNombre_seleccion(String nombre_seleccion) {
-        this.nombre_seleccion = nombre_seleccion;
+    public void setSeleccion(Seleccion seleccion) {
+        this.seleccion = seleccion;
     }
 }

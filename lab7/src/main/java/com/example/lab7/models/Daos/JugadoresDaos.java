@@ -1,6 +1,7 @@
 package com.example.lab7.models.Daos;
 
 import com.example.lab7.models.beans.Jugador;
+import com.example.lab7.models.beans.Seleccion;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +26,9 @@ public class JugadoresDaos extends DaosBase{
                 jugador.setEdad(rs.getInt(3));
                 jugador.setPosicion(rs.getString(4));
                 jugador.setClub(rs.getString(5));
-                jugador.setNombre_seleccion(rs.getString(8));
+                Seleccion seleccion = new Seleccion();
+                seleccion.setNombre(rs.getString(8));
+                jugador.setSeleccion(seleccion);
                 listaJugadores.add(jugador);
             }
         } catch (SQLException ex) {

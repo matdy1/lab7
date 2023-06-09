@@ -46,7 +46,7 @@
         </td>
         <td><%=j.getClub()%>
         </td>
-        <td><%=j.getNombre_seleccion()%>
+        <td><%=j.getSeleccion().getNombre()%>
         </td>
       </tr>
       <% } %>
