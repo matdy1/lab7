@@ -17,7 +17,7 @@ public class JugadorServlet extends HttpServlet {
         JugadoresDaos jugadoresDaos = new JugadoresDaos();
         request.setAttribute("lista",jugadoresDaos.listarJugadores());
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("employee/lista.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("listarJugador.jsp");
         requestDispatcher.forward(request,response);
 
 
