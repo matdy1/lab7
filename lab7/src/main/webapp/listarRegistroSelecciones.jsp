@@ -15,15 +15,15 @@
     </jsp:include>
     <div class="pb-5 pt-4 px-3 titlecolor d-flex justify-content-between align-items-center">
         <div class="col-lg-6">
-            <h1 class='text-light'>Selecciones con partidos</h1>
+            <h1 class='text-light'>Selecciones registradas</h1>
         </div>
         <div class="col-lg-3">
-            <a class="btn btn-info" href="<%=request.getContextPath()%>/RegistroSeleccionServlet">Ver registro de selecciones</a>
+            <a class="btn btn-info" href="<%=request.getContextPath()%>/SeleccionServlet">Ver selecciones con partidos</a>
         </div>
+
         <div class="col-lg-2">
             <a class="btn btn-success" href="<%=request.getContextPath()%>/CrearSeleccionServlet">Crear Seleccion Nueva</a>
         </div>
-
 
     </div>
     <div class="tabla">
@@ -34,7 +34,7 @@
                 <th>NOMBRE</th>
                 <th>TECNICO</th>
                 <th>ESTADIO</th>
-                <th>PARTIDO</th>
+                <th></th>
             </tr>
             </thead>
 
@@ -49,7 +49,8 @@
                 </td>
                 <td><%=s.getEstadio().getNombre()%>
                 </td>
-                <td><%=s.getPrimer_partido()%>
+                <td><a onclick="return confirm('Estas seguro de borrar :( ?')" class="btn btn-danger"
+                       href="<%=request.getContextPath()%>/BorrarSeleccionServlet?id=<%=s.getIdSeleccion()%>">Borrar</a>
                 </td>
             </tr>
             <% } %>

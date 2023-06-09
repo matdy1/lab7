@@ -46,9 +46,44 @@ public class SeleccionesDao extends DaosBase{
         return listaSelecciones;
     }
 
+
+
+    public ArrayList<Seleccion> listarSelecciones_agrupadas() {
+
+        ArrayList<Seleccion> listaSelecciones = new ArrayList<>();
+
+        String sql = "SELECT s.idSeleccion,s.nombre,s.tecnico,e.nombre FROM seleccion s\n" +
+                "inner join estadio e on (s.estadio_idEstadio = e.idEstadio)\n" +
+                "order by s.idSeleccion;";
+
+
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Seleccion seleccion = new Seleccion();
+                seleccion.setIdSeleccion(rs.getInt(1));
+                seleccion.setNombre(rs.getString(2));
+                seleccion.setTecnico(rs.getString(3));
+
+                Estadio estadio = new Estadio();
+                estadio.setNombre(rs.getString(4));
+
+                seleccion.setEstadio(estadio);
+
+                listaSelecciones.add(seleccion);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return listaSelecciones;
+    }
+
     public void guardar(Seleccion seleccion) {
 
-        String sql = "INSERT INTO seleccion (nombre,tecnico,estadio_idEstadio) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO seleccion (nombre,tecnico,estadio_idEstadio) VALUES (?,?,?)";
         try (Connection connection = getConnection();
              PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
@@ -63,4 +98,18 @@ public class SeleccionesDao extends DaosBase{
         }
     }
 
+    public void borrar_seleccion(String id) {
+
+        String sql = "DELETE FROM seleccion where idSeleccion = ?";
+        try (Connection connection = getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

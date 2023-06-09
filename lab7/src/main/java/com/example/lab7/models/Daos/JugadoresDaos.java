@@ -13,7 +13,7 @@ public class JugadoresDaos extends DaosBase{
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
 
         String sql = "SELECT * FROM jugador j\n" +
-                "inner join seleccion s on j.sn_idSeleccion=s.idSeleccion";
+                "inner join seleccion s on j.sn_idSeleccion=s.idSeleccion order by j.idJugador";
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();

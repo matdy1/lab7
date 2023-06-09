@@ -32,18 +32,23 @@ public class    CrearSeleccionServlet extends HttpServlet {
         Seleccion seleccion = parseSeleccion(request);
 
 
-        boolean flag1 = false;
-        for (Seleccion seleccion1: seleccionesDao.listarSelecciones()){
-            if ((seleccion.getNombre().equalsIgnoreCase(seleccion1.getNombre()))){
-                flag1 = true;
+        if (seleccion != null){
+            boolean flag1 = false;
+            for (Seleccion seleccion1: seleccionesDao.listarSelecciones_agrupadas()){
+                if ((seleccion.getNombre().equalsIgnoreCase(seleccion1.getNombre()))){
+                    flag1 = true;
+                }
             }
-        }
-        if (!flag1){
-            seleccionesDao.guardar(seleccion);
+            if (!flag1){
+                seleccionesDao.guardar(seleccion);
 
-            response.sendRedirect(request.getContextPath() + "/SeleccionServlet");
+                response.sendRedirect(request.getContextPath() + "/RegistroSeleccionServlet");
+            }else{
+                response.sendRedirect(request.getContextPath() + "/CrearSeleccionServlet");
+            }
+
         }else{
-            response.sendRedirect(request.getContextPath() + "/CrearSeleccionServlet");
+            response.sendRedirect(request.getContextPath() + "/CrearJugadorServlet");
         }
 
 
@@ -67,7 +72,7 @@ public class    CrearSeleccionServlet extends HttpServlet {
             return seleccion;
 
         } catch (NumberFormatException e) {
+            return null;
         }
-        return seleccion;
     }
 }
