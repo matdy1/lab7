@@ -19,7 +19,7 @@ public class    CrearJugadorServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         SeleccionesDao seleccionesDao = new SeleccionesDao();
-        request.setAttribute("listaSelecciones",seleccionesDao.listarSelecciones());
+        request.setAttribute("listaSelecciones",seleccionesDao.listarSelecciones_agrupadas());
         request.getRequestDispatcher("nuevoJugador.jsp").forward(request, response);
     }
 
