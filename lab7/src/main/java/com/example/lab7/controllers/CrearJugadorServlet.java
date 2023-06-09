@@ -28,7 +28,7 @@ public class    CrearJugadorServlet extends HttpServlet {
 
         JugadoresDaos jugadoresDaos =new JugadoresDaos();
 
-        Jugador jugador = parseJob(request);
+        Jugador jugador = parseJugador(request);
 
         if (jugador != null){
             boolean flag1 = false;
@@ -50,7 +50,7 @@ public class    CrearJugadorServlet extends HttpServlet {
         }
     }
 
-    public Jugador parseJob(HttpServletRequest request) {
+    public Jugador parseJugador(HttpServletRequest request) {
 
         Jugador jugador = new Jugador();
         String nombre = request.getParameter("nombre");
@@ -73,11 +73,7 @@ public class    CrearJugadorServlet extends HttpServlet {
             return jugador;
 
         } catch (NumberFormatException e) {
-            String errorMessage = "Ingrese una edad válida";
-            request.setAttribute("errorMessage", errorMessage);
             return null;
         }
-
-
     }
 }
