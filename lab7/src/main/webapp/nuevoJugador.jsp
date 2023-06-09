@@ -43,7 +43,7 @@
       </div>
       <div class="mb-3">
         <label class='text-light' for="selecciones">Selecciones</label>
-        <select class="form-select" name="selecciones">
+        <select class="form-select" name="selecciones" id="selecciones">
           <% for (Seleccion s : listaSelecciones) { %>
           <option value="<%=s.getIdSeleccion()%>">
             <%=s.getNombre()%>

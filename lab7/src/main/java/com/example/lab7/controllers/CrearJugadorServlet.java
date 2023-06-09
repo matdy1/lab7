@@ -13,7 +13,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "CrearJugadorServlet", value = "/CrearJugadorServlet")
-public class CrearJugadorServlet extends HttpServlet {
+public class    CrearJugadorServlet extends HttpServlet {
     @Override
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -57,7 +57,9 @@ public class CrearJugadorServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             String errorMessage = "Ingrese una edad válida";
             request.setAttribute("errorMessage", errorMessage);
-            return null;
+
         }
+        return jugador;
+
     }
 }
