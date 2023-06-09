@@ -33,11 +33,8 @@ public class    CrearJugadorServlet extends HttpServlet {
         if (jugador != null){
             boolean flag1 = false;
             for (Jugador jugadorazo: jugadoresDaos.listarJugadores()){
-                System.out.println("jugador name e id: " + jugador.getNombre_jugador() + " "+jugador.getIdSeleccion());
-                System.out.println("jugadorazo name e id: " + jugadorazo.getNombre_jugador() + " "+jugadorazo.getIdSeleccion());
                 if ((jugador.getNombre_jugador().equals(jugadorazo.getNombre_jugador())) && ((jugador.getIdSeleccion()) == (jugadorazo.getIdSeleccion()))){
                     flag1 = true;
-                    System.out.println("ola");
                 }
             }
             if (!flag1){
