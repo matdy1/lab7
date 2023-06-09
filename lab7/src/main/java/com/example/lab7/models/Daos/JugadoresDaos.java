@@ -26,6 +26,7 @@ public class JugadoresDaos extends DaosBase{
                 jugador.setEdad(rs.getInt(3));
                 jugador.setPosicion(rs.getString(4));
                 jugador.setClub(rs.getString(5));
+                jugador.setIdSeleccion(rs.getInt(6));
                 Seleccion seleccion = new Seleccion();
                 seleccion.setNombre(rs.getString(8));
                 jugador.setSeleccion(seleccion);

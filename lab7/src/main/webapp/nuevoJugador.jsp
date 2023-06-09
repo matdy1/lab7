@@ -28,11 +28,6 @@
         <label class='text-light' for="edad">Edad</label>
         <input type="text" class="form-control" name="edad" id="edad">
       </div>
-      <% if (request.getAttribute("errorMessage") != null) { %>
-      <div class="error-message">
-        <%= request.getAttribute("errorMessage") %>
-      </div>
-      <% } %>
       <div class="mb-3">
         <label class='text-light' for="posicion">Posicion</label>
         <input type="text" class="form-control" name="posicion" id="posicion">

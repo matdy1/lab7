@@ -1,5 +1,6 @@
 package com.example.lab7.controllers;
 
+import java.awt.font.FontRenderContext;
 import java.io.*;
 import java.math.BigDecimal;
 
@@ -28,9 +29,28 @@ public class    CrearJugadorServlet extends HttpServlet {
         JugadoresDaos jugadoresDaos =new JugadoresDaos();
 
         Jugador jugador = parseJob(request);
-        jugadoresDaos.guardar(jugador);
 
-        response.sendRedirect(request.getContextPath() + "/JugadorServlet");
+        if (jugador != null){
+            boolean flag1 = false;
+            for (Jugador jugadorazo: jugadoresDaos.listarJugadores()){
+                System.out.println("jugador name e id: " + jugador.getNombre_jugador() + " "+jugador.getIdSeleccion());
+                System.out.println("jugadorazo name e id: " + jugadorazo.getNombre_jugador() + " "+jugadorazo.getIdSeleccion());
+                if ((jugador.getNombre_jugador().equals(jugadorazo.getNombre_jugador())) && ((jugador.getIdSeleccion()) == (jugadorazo.getIdSeleccion()))){
+                    flag1 = true;
+                    System.out.println("ola");
+                }
+            }
+            if (!flag1){
+                jugadoresDaos.guardar(jugador);
+
+                response.sendRedirect(request.getContextPath() + "/JugadorServlet");
+            }else{
+                response.sendRedirect(request.getContextPath() + "/CrearJugadorServlet");
+            }
+
+        }else{
+            response.sendRedirect(request.getContextPath() + "/CrearJugadorServlet");
+        }
     }
 
     public Jugador parseJob(HttpServletRequest request) {
@@ -41,6 +61,7 @@ public class    CrearJugadorServlet extends HttpServlet {
         String posicion = request.getParameter("posicion");
         String club = request.getParameter("club");
         String seleccionStr = request.getParameter("selecciones");
+
 
         try {
             int edad = Integer.parseInt(edadStr);
@@ -57,9 +78,9 @@ public class    CrearJugadorServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             String errorMessage = "Ingrese una edad válida";
             request.setAttribute("errorMessage", errorMessage);
-
+            return null;
         }
-        return jugador;
+
 
     }
 }
