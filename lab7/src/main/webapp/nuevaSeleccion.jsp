@@ -5,7 +5,7 @@
 <html>
 <!--Colocar como value: nombre de la presente página -->
 <jsp:include page="/static/head.jsp">
-  <jsp:param name="title" value="Bienvenido"/>
+  <jsp:param name="title" value="Nueva Seleccion"/>
 </jsp:include>
 <body>
 <div class='container'>
@@ -39,7 +39,7 @@
         </select>
       </div>
       <a class="btn btn-danger" href="<%=request.getContextPath()%>/SeleccionServlet">Cancelar</a>
-      <button type="submit" class="btn btn-primary">Guardar Jugador</button>
+      <button type="submit" class="btn btn-primary">Guardar Seleccion</button>
     </form>
   </div>
 </div>
